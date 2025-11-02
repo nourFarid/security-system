@@ -66,34 +66,20 @@ const Navbar = ({ toggleSidebar }) => {
     );
 
     return (
-        <nav className="bg-white border-b border-gray-200 shadow-sm fixed top-0 w-full z-50">
+        <nav className="bg-white border-b border-gray-200 fixed top-0 w-full z-50">
             <div className="max-w-screen-3xl mx-auto">
                 <div className="flex items-center justify-between h-16 md:h-20 lg:h-24">
-                    {/* LEFT: Sidebar Toggle (mobile only) + Logo */}
                     <div className="flex items-center ltr:space-x-3 rtl:space-x-reverse">
-                        <button
-                            onClick={toggleSidebar}
-                            className="lg:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
-                            aria-label="Toggle Sidebar"
-                        >
+                        <button onClick={toggleSidebar} className="lg:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors" aria-label="Toggle Sidebar">
                             <i className="ri-menu-line text-2xl"></i>
                         </button>
-                        {/* Logo --- adjust size as needed */}
                         <a href="/" className="flex items-center">
-                            {/* Logo Section */}
                             <div className="flex justify-center items-center py-4 md:py-5 lg:py-6 border-gray-200">
-                                <img
-                                    src={EgyptAirLogo}
-                                    alt="Egypt Air Logo"
-                                    className="h-12 w-auto sm:h-14 md:h-16 lg:h-20 xl:h-24 object-contain"
-                                />
+                                <img src={EgyptAirLogo} alt="Egypt Air Logo" className="h-12 w-auto sm:h-14 md:h-16 lg:h-20 xl:h-24 object-contain" />
                             </div>
                         </a>
                     </div>
-
-                    {/* RIGHT: Language switch + Profile */}
                     <div className="flex items-center ltr:space-x-4 rtl:space-x-reverse px-4 md:px-6 lg:px-8">
-                        {/* Language Dropdown */}
                         <div className="relative" ref={languageDropdownRef}>
                             <button
                                 type="button"
@@ -104,15 +90,10 @@ const Navbar = ({ toggleSidebar }) => {
                                 <span className="ltr:ml-2 rtl:mr-2 hidden sm:inline">
                                     {currentLang === 'en' ? 'English' : 'العربية'}
                                 </span>
-                                <i className={`
-                                    ri-arrow-down-s-line 
-                                    ltr:ml-1 rtl:mr-1
-                                    transition-transform 
-                                    ${isLanguageDropdownOpen ? 'rotate-180' : ''}
-                                `}></i>
+                                <i className={`ri-arrow-down-s-line ltr:ml-1 rtl:mr-1 transition-transform ${isLanguageDropdownOpen ? 'rotate-180' : ''}`}></i>
                             </button>
                             {isLanguageDropdownOpen && (
-                                <div className="absolute ltr:right-0 rtl:left-0 mt-2 w-44 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                                <div className="absolute ltr:right-0 rtl:left-0 mt-2 w-44 bg-white rounded-lg border border-gray-200 z-50">
                                     <ul className="py-2">
                                         <li>
                                             <button
@@ -136,8 +117,6 @@ const Navbar = ({ toggleSidebar }) => {
                                 </div>
                             )}
                         </div>
-
-                        {/* Profile Dropdown */}
                         <div className="relative" ref={profileDropdownRef}>
                             <button
                                 type="button"
@@ -150,7 +129,7 @@ const Navbar = ({ toggleSidebar }) => {
                                 </div>
                             </button>
                             {isProfileDropdownOpen && (
-                                <div className="absolute ltr:right-0 rtl:left-0 mt-2 w-52 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                                <div className="absolute ltr:right-0 rtl:left-0 mt-2 w-52 bg-white rounded-lg border border-gray-200 z-50">
                                     <div className="px-4 py-3 border-b border-gray-200">
                                         <p className="text-sm font-medium text-gray-900">
                                             {t("John Doe")}

@@ -44,49 +44,38 @@ const Sidebar = ({ isSidebarOpen, closeSidebar, isDesktop }) => {
 
     return (
         <>
-            {/* Mobile/Tablet Overlay - Only show when sidebar is open on mobile */}
             {isSidebarOpen && !isDesktop && (
-                <div
-                    className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
-                    onClick={closeSidebar}
-                ></div>
+                <div className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden" onClick={closeSidebar}></div>
             )}
 
-            {/* Sidebar */}
-            <aside
-                className={`
+            <aside className={`
                     fixed
                     top-16 md:top-20 lg:top-24
                     ltr:left-0 rtl:right-0
                     h-[calc(100vh-4rem)] md:h-[calc(100vh-5rem)] lg:h-[calc(100vh-6rem)]
-                    w-64 md:w-72 lg:w-80 xl:w-88
+                    w-72 md:w-56 lg:w-64 xl:w-72 
                     bg-white
-                    shadow-lg
                     overflow-y-auto
                     z-40
                     scrollbar-thin
                     scrollbar-thumb-gray-300
                     scrollbar-track-gray-100
-                    
                     ${isDesktop ? 'block' : (isSidebarOpen ? 'block' : 'hidden')}
-                    
                     transform
                     transition-transform
                     duration-300
                     ease-in-out
                     ${isDesktop ? 'translate-x-0' : (isSidebarOpen ? 'translate-x-0' : 'ltr:-translate-x-full rtl:translate-x-full')}
-                `}
-            >
-                {/* Navigation Menu */}
-                <nav className="p-4 md:p-5 lg:p-6">
+                `}>
+                <nav className="me-4">
                     <ul className="space-y-2">
                         {menuItems.map((item) => (
                             <li key={item.id}>
                                 {!item.subItems ? (
-                                    <Link
-                                        to={item.path}
-                                        onClick={closeSidebar}
+                                    <Link to={item.path} onClick={closeSidebar}
                                         className={`
+                                            no-underline
+                                            !font-extrabold
                                             flex items-center
                                             px-4 py-3
                                             rounded-lg
@@ -99,8 +88,7 @@ const Sidebar = ({ isSidebarOpen, closeSidebar, isDesktop }) => {
                                                 ? 'bg-primary-500 text-white shadow-md'
                                                 : 'text-gray-700 hover:bg-gray-100'
                                             }
-                                        `}
-                                    >
+                                        `}>
                                         <i className={`${item.icon} text-lg md:text-xl ltr:mr-3 rtl:ml-3`}></i>
                                         <span>{item.title}</span>
                                     </Link>
@@ -158,6 +146,8 @@ const Sidebar = ({ isSidebarOpen, closeSidebar, isDesktop }) => {
                                                             to={subItem.path}
                                                             onClick={closeSidebar}
                                                             className={`
+                                                                no-underline
+                                                                !font-extrabold
                                                                 flex items-center
                                                                 px-4 py-2.5
                                                                 rounded-lg
@@ -185,9 +175,7 @@ const Sidebar = ({ isSidebarOpen, closeSidebar, isDesktop }) => {
                     </ul>
                 </nav>
             </aside>
-
-            {/* Sidebar Spacer for Desktop - Always visible on large screens */}
-            <div className="hidden lg:block w-64 md:w-72 lg:w-80 xl:w-88 flex-shrink-0"></div>
+            <div className="hidden lg:block w-72 md:w-56 lg:w-64 xl:w-72 flex-shrink-0"></div>
         </>
     );
 };
