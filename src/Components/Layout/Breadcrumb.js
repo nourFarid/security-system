@@ -1,6 +1,6 @@
 const Breadcrumb = ({ items = [], button = [] }) => {
     return (
-        <div className="flex flex-wrap items-center justify-between bg-white rounded shadow-sm p-2 mb-3">
+        <div className="flex flex-wrap items-center justify-between bg-white rounded shadow-sm p-2 mb-3 shadow-lg mb-4">
             <nav aria-label="breadcrumb" className="flex-1">
                 <ol className="flex flex-wrap items-center gap-1 mb-0">
                     {items.map((item, index) => (
@@ -12,7 +12,7 @@ const Breadcrumb = ({ items = [], button = [] }) => {
                             {index === 0 && <i className="bi bi-house mr-1"></i>}
 
                             {!item.active ? (
-                                <a href={item.link} className="hover:underline">
+                                <a href={item.link} className="hover:underline no-underline">
                                     {item.label}
                                 </a>
                             ) : (

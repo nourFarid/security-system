@@ -39,9 +39,8 @@ const Sidebar = ({ isSidebarOpen, closeSidebar, isDesktop }) => {
         setOpenSubmenu(openSubmenu === itemId ? null : itemId);
     };
 
-    const isActiveLink = (path) => location.pathname === path;
+    const isActiveLink = (path) =>  location.pathname.includes(path);
     const isParentActive = (subItems) => subItems?.some((item) => location.pathname === item.path);
-
     return (
         <>
             {isSidebarOpen && !isDesktop && (
@@ -66,8 +65,9 @@ const Sidebar = ({ isSidebarOpen, closeSidebar, isDesktop }) => {
                     duration-300
                     ease-in-out
                     ${isDesktop ? 'translate-x-0' : (isSidebarOpen ? 'translate-x-0' : 'ltr:-translate-x-full rtl:translate-x-full')}
+                    shadow-lg
                 `}>
-                <nav className="me-4">
+                <nav className="me-4 mt-5">
                     <ul className="space-y-2">
                         {menuItems.map((item) => (
                             <li key={item.id}>

@@ -1,66 +1,56 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Table from "../Components/Layout/Table";
+import Pagination from "../Components/Layout/Pagination";
 import axiosInstance from "../Axios/AxiosInstance";
 
 const ExamplePage = () => {
-  const [agents, setAgents] = useState([]);
+  const [departments, setDepartments] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [pageSize] = useState(5);
+  const [totalCount, setTotalCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchAgents = async () => {
+  const fetchDepartments = async (page = 1) => {
+    setLoading(true);
     try {
-      setLoading(true);
-      const response = await axiosInstance.get("Agent");
-      console.log("API response:", response.data);
-      setAgents(response.data);
-    } catch (err) {
-      console.error("Error fetching users:", err);
-      setError("Failed to fetch users");
+      const res = await axiosInstance.get("Department/paged", {
+        params: { pageNumber: page, pageSize },
+      });
+      const data = res.data;
+      setDepartments(data.items);
+      setTotalCount(data.totalCount);
+      setPageNumber(data.pageNumber);
+    } catch (e) {
+      setError("Failed to fetch departments");
     } finally {
       setLoading(false);
     }
   };
-  useEffect(() => {
-    fetchAgents();
-  }, []);
 
+  useEffect(() => {
+    fetchDepartments(pageNumber);
+  }, [pageNumber]);
 
   const columns = [
-    { label: "Agent ID", accessor: "agentId" },
-    { label: "Name", accessor: "agentName" },
-    { label: "Abbreviation", accessor: "agentAbbreviation" },
+    { label: "Department ID", accessor: "departmentId" },
+    { label: "Department Name", accessor: "departmentName" },
     { label: "Available", accessor: "available" },
   ];
-  if (loading)
-    return <p className="text-center mt-5 text-gray-500">Loading...</p>;
 
-  if (error)
-    return <p className="text-center mt-5 text-red-500">{error}</p>;
-
-  const handleEdit = (row) => {
-    alert(`Edit ${row.agentName}`);
-  };
-  const handleShow = (row) => {
-    alert(`Agent Name: ${row.agentName}\nAvailable: ${row.available}`);
-  };
-
-  const handleDelete = (row) => {
-    setAgents((prev) => prev.filter((r) => r.agentId !== row.agentId));
-  };
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
-    <div className="container mx-auto p-6">
-      <h3 className="text-xl font-semibold mb-4">Users</h3>
-      <Table
-        columns={columns}
-        data={agents}
-        showActions={true}
-        onEdit={handleEdit}
-        showShow={true}
-        onShow={handleShow}
-        onDelete={handleDelete}
+    <>
+      <Table columns={columns} data={departments} showActions={false} />
+      <Pagination
+        pageNumber={pageNumber}
+        pageSize={pageSize}
+        totalRows={totalCount}
+        onPageChange={setPageNumber}
       />
-    </div>
+    </>
   );
 };
 

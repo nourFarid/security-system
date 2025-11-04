@@ -8,7 +8,7 @@ const Footer = () => {
         <footer className="bg-white border-t border-gray-200 py-2 w-full mt-auto">
             <div className="px-4 md:px-6 lg:px-8">
                 <p className="text-center text-xs md:text-sm text-gray-600 text-center font-Cairo" >
-                    {t("Security System")} © {currentYear}. {t("All rights reserved for Egypt Air Ground Service Development Section")}.
+                    {t("Tax System")} © {currentYear}. {t("All rights reserved for Egypt Air Ground Service Development Section")}.
                 </p>
             </div>
         </footer>

@@ -1,4 +1,5 @@
 {
+  "Tax System": "Tax System",
   "hello": "Hello",
   "Add": "Add",
   "Edit": "Edit",
@@ -29,5 +30,23 @@
   "QuestionMark": "?",
   "Filter": "Filter",
   "Reset": "Reset",
-  "ID": "ID"
+  "ID": "ID",
+  "Total": "Total",
+  "Tax Registration Number": "Tax Registration Number",
+  "National ID": "National ID",
+  "Supplier Name": "Supplier Name",
+  "Address": "Address",
+  "Errand Name": "Errand Name",
+  "Errand Code": "Errand Code",
+  "Transaction Date": "Transaction Date",
+  "Nature of Transaction": "Nature of Transaction",
+  "Total Transaction Value": "Total Transaction Value",
+  "Deduction Type": "Deduction Type",
+  "Collection Date": "Collection Date",
+  "Net Amount": "Net Amount",
+  "Deduction Percentage": "Deduction Percentage",
+  "Fiscal Year From": "Fiscal Year From",
+  "Fiscal Year To": "Fiscal Year To",
+  "Amount": "Amount",
+  "Price": "price"
 }

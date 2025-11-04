@@ -7,6 +7,8 @@ import Layout from './Components/Layout/Layout';
 import ExamplePage from './Pages/ExamplePage';
 import Setup from './Pages/Setup';
 import DocumentType from './Pages/DocumentType'
+import Document41 from './Pages/Document41'
+import AddDocument41 from './Pages/AddDocument41'
 
 function App() {
   const lang = useSelector((state) => state.language.lang)
@@ -27,8 +29,9 @@ function App() {
               <Route path="/Purchase" element={""} />
               <Route path="/Invoice" element={""} />
               <Route path="/Setup" element={<Setup/>} />
-              {/* <Route path="/Document41" element={<Document41/>} /> */}
-              <Route path="/DocumentType" element={<DocumentType/>} />
+              <Route path="/Document41" element={<Document41/>} />
+              <Route path="/Document41/Add" element={<AddDocument41/>} />
+              <Route path="/Setup/DocumentType" element={<DocumentType/>} />
               <Route path="/ExamplePage" element={<ExamplePage/>} />
               {/* Add other routes */}
             </Routes>

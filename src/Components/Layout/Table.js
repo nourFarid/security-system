@@ -1,6 +1,4 @@
-import React from "react";
 import PropTypes from "prop-types";
-
 const Table = ({
   columns = [],
   data = [],
@@ -8,14 +6,28 @@ const Table = ({
   showEdit = true,
   showDelete = true,
   showShow = true,
-  onEdit = () => {},
-  onDelete = () => {},
-  onShow = () => {},
+  onEdit = () => { },
+  onDelete = () => { },
+  onShow = () => { },
 }) => {
   const getCellValue = (row, accessor) => {
-    if (row == null) return "-";
+    if (!row) return "-";
     if (typeof accessor === "function") return accessor(row);
-    if (accessor in row) return row[accessor];
+    if (typeof accessor === "string" && accessor.includes(".")) {
+      return accessor.split(".").reduce((acc, key) => {
+        return acc && acc[key] !== undefined ? acc[key] : "-";
+      }, row);
+    }
+    if (accessor in row) {
+      const value = row[accessor];
+      if (typeof value === "boolean") {
+        return value ? "Yes" : "No";
+      }
+      if (value === null || value === undefined || value === "") {
+        return "-";
+      }
+      return value;
+    }
     const keys = Object.keys(row);
     const foundKey = keys.find(
       (k) => k.toLowerCase() === String(accessor).toLowerCase()
@@ -23,7 +35,6 @@ const Table = ({
     if (foundKey) return row[foundKey];
     return "-";
   };
-
   return (
     <div className="container-fluid p-4">
       <div className="table-responsive">
@@ -31,7 +42,8 @@ const Table = ({
           <thead className="table-marine-blue text-white">
             <tr>
               {columns.map((col, idx) => (
-                <th key={idx}>{col.label}</th>
+                <th className="whitespace-nowrap" key={idx}>
+                  {col.label}</th>
               ))}
               {showActions && <th style={{ width: 160 }}>Actions</th>}
             </tr>
@@ -49,16 +61,10 @@ const Table = ({
                     <td>
                       <div className="d-flex justify-content-center gap-2">
                         {showEdit && (
-                          <button
-                            type="button"
-                            onClick={() => onEdit(row)}
-                            className="btn btn-sm btn-primary"
-                            title="Edit"
-                          >
+                          <button type="button" onClick={() => onEdit(row)} className="btn btn-sm btn-primary" title="Edit">
                             <i className="bi bi-pencil-square"></i>
                           </button>
                         )}
-
                         {showShow && (
                           <button type="button" onClick={() => onShow(row)} className="btn btn-sm btn-warning" title="Show">
                             <i className="bi bi-search"></i>
@@ -66,12 +72,7 @@ const Table = ({
                         )}
 
                         {showDelete && (
-                          <button
-                            type="button"
-                            onClick={() => onDelete(row)}
-                            className="btn btn-sm btn-danger"
-                            title="Delete"
-                          >
+                          <button type="button"onClick={() => onDelete(row)} className="btn btn-sm btn-danger"title="Delete">
                             <i className="bi bi-trash"></i>
                           </button>
                         )}

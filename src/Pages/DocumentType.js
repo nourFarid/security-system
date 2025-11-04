@@ -3,9 +3,13 @@ import Breadcrumb from "../Components/Layout/Breadcrumb";
 import Table from "../Components/Layout/Table";
 import useTranslate from "../Hooks/Translation/useTranslate";
 import { Modal } from "bootstrap";
+import Pagination from './../Components/Layout/Pagination';
 
 const DocumentType = () => {
   const { t } = useTranslate();
+  const [pageNumber, setPageNumber] = useState(1);
+  const [pageSize] = useState(5);
+  const [totalCount, setTotalCount] = useState(0);
 
   const objTitle = useMemo(
     () => ({
@@ -117,10 +121,6 @@ const DocumentType = () => {
     };
   }, []);
 
-  useEffect(() => {
-    // fetch data here if needed
-  }, []);
-
   return (
     <>
       <Breadcrumb items={breadcrumbItems} button={breadcrumbButtons} />
@@ -133,6 +133,12 @@ const DocumentType = () => {
         showShow={false}
         onShow={handleShow}
         onDelete={handleDelete}
+      />
+      <Pagination
+        pageNumber={pageNumber}
+        pageSize={pageSize}
+        totalRows={totalCount}
+        onPageChange={setPageNumber}
       />
 
       <div className="modal fade" id="AddDocumentType" tabIndex="-1" aria-hidden="true">
