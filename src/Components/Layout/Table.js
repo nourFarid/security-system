@@ -54,7 +54,7 @@ const Table = ({
               data.map((row, rowIndex) => (
                 <tr key={rowIndex}>
                   {columns.map((col, colIndex) => (
-                    <td key={colIndex}>{getCellValue(row, col.accessor)}</td>
+                    <td className="whitespace-nowrap" key={colIndex}>{getCellValue(row, col.accessor)}</td>
                   ))}
 
                   {showActions && (

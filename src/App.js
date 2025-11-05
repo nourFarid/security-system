@@ -8,7 +8,11 @@ import ExamplePage from './Pages/ExamplePage';
 import Setup from './Pages/Setup';
 import DocumentType from './Pages/DocumentType'
 import Document41 from './Pages/Document41'
+import Purchase from './Pages/Purchase'
+import AddPurchase from './Pages/AddPurchase'
 import AddDocument41 from './Pages/AddDocument41'
+import Sales from './Pages/Sales'
+import AddSales from './Pages/AddSales'
 
 function App() {
   const lang = useSelector((state) => state.language.lang)
@@ -26,8 +30,10 @@ function App() {
         <Route path="/*" element={
           <Layout>
             <Routes>
-              <Route path="/Purchase" element={""} />
-              <Route path="/Invoice" element={""} />
+              <Route path="/Purchase" element={<Purchase/>} />
+              <Route path="/Purchase/Add" element={<AddPurchase/>} />
+              <Route path="/Sales" element={<Sales/>} />
+              <Route path="/Sales/Add" element={<AddSales/>} />
               <Route path="/Setup" element={<Setup/>} />
               <Route path="/Document41" element={<Document41/>} />
               <Route path="/Document41/Add" element={<AddDocument41/>} />

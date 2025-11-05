@@ -1,29 +1,12 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Breadcrumb from "../Components/Layout/Breadcrumb";
 import useTranslate from "../Hooks/Translation/useTranslate";
 
-const DocumentType = () => {
+const AddPurchase = () => {
   const { t } = useTranslate();
   
-  const objTitle = useMemo(
-    () => ({
-      AddDocumentType: t("Add Document Type"),
-      EditDocumentType: t("Edit Document Type"),
-      Name: t("Name"),
-      Code: t("Code"),
-      Save: t("Save"),
-      Cancel: t("Cancel"),
-      Delete: t("Delete"),
-      DeleteConfirmation: t("Are you sure to delete"),
-      QuestionMark: t("?"),
-      Filter: t("Filter"),
-      Reset: t("Reset"),
-    }),
-    [t]
-  );
-  
   const breadcrumbItems = [
-    { label: t("Document 41"), link: "/Document41", active: false },
+    { label: t("Purchase"), link: "/Purchase", active: false },
     { label: t("Add"), link: "", active: true }
   ];
 
@@ -39,67 +22,72 @@ const DocumentType = () => {
       <div className="border rounded p-3 mb-2 bg-white shadow-lg">
         <div className="row p-4">
           <div className="col-md-4 form-group">
-            <h1><strong className="text-primary">{t("Document 41")}</strong></h1>
+            <h1><strong className="text-primary">{t("Purchase")}</strong></h1>
           </div>
         </div>
 
         <div className="row p-4">
           <div className="col-md-4 form-group">
-            <label>{t("Supplier")}</label>
+            <label>{t("Customer")}</label>
             <input type="text" className="mt-2 form-control" placeholder="server side autocomplete" />
           </div>
           <div className="col-md-4 form-group">
-            <label>{t("Transaction Date")}</label>
-            <input type="date" className="mt-2 form-control" />
+            <label>{t("Tax Type")}</label>
+            <select className="mt-2 form-control">
+              <option >{t("Tax Type")}</option>
+            </select>
           </div>
           <div className="col-md-4 form-group">
-            <label>{t("Collection Date")}</label>
-            <input type="date" className="mt-2 form-control" />
-          </div>
-        </div>
-
-        <div className="row p-4">
-          <div className="col-md-4 form-group">
-            <label>{t("Errand Name")}</label>
-            <label className="mt-2 form-control">{t("Errand Name")}</label>
-          </div>
-          <div className="col-md-4 form-group">
-            <label>{t("Errand Code")}</label>
-            <label className="mt-2 form-control">{t("Errand Code")}</label>
-          </div>
-          <div className="col-md-4 form-group">
-            <label>{t("Transaction Nature")}</label>
-            <select className="form-control">
-              <option >{t("Transaction Nature")}</option>
+            <label>{t("Document Type")}</label>
+            <select className="mt-2 form-control">
+              <option >{t("Document Type")}</option>
             </select>
           </div>
         </div>
 
         <div className="row p-4">
           <div className="col-md-4 form-group">
-            <label>{t("Type of Deduction")}</label>
-            <select className="form-control mt-2">
-              <option >{t("Type of Deduction")}</option>
-            </select>
+            <label>{t("Invoice Number")}</label>
+            <input type="text" className="mt-2 form-control" placeholder={t("Invoice Number")} />
           </div>
           <div className="col-md-4 form-group">
-            <label>{t("Fiscal Year")}</label>
-            <label className="mt-2 form-control">{t("Fiscal Year")}</label>
+            <label>{t("Invoic Date")}</label>
+            <input type="date" className="mt-2 form-control" />
+          </div>
+          <div className="col-md-4 form-group">
+            <label>{t("Statment Type")}</label>
+            <select className="mt-2 form-control">
+              <option >{t("Statment Type")}</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="row p-4">
+          <div className="col-md-4 form-group">
+            <label>{t("Item Type")}</label>
+            <select className="mt-2 form-control">
+              <option >{t("Item Type")}</option>
+            </select>
           </div>
         </div>
       </div>
+
       <div className="border rounded p-3 mb-2 bg-white shadow-lg mt-5">
         <div className="row p-4">
           <div className="col-md-6 form-group">
             <label>{t("Item")}</label>
             <input type="text" className="mt-2 form-control" placeholder="server side autocomplete" />
           </div>
-          <div className="col-md-3 form-group">
+          <div className="col-md-2 form-group">
             <label>{t("Price")}</label>
             <input type="number" className="mt-2 form-control" placeholder="0.0" />
           </div>
-          <div className="col-md-3 form-group">
+          <div className="col-md-2 form-group">
             <label>{t("Amount")}</label>
+            <input type="number" className="mt-2 form-control" placeholder="0" />
+          </div>
+          <div className="col-md-2 form-group">
+            <label>{t("Discount")}</label>
             <input type="number" className="mt-2 form-control" placeholder="0" />
           </div>
         </div>
@@ -109,6 +97,7 @@ const DocumentType = () => {
             <strong>{t("Total Amount")} : </strong><span>{"0.0"}</span><br />
             <strong>{t("Tax Percent")} : </strong><span>{"0.0"} %</span><br />
             <strong>{t("Tax Amount")} : </strong><span>{"0.0"}</span><br />
+            <strong>{t("Discount")} : </strong><span>{"0.0"}</span><br />
             <strong>{t("Net Amount")} : </strong><span>{"0.0"}</span><br />
           </div>
         </div>
@@ -123,4 +112,4 @@ const DocumentType = () => {
   );
 };
 
-export default DocumentType;
+export default AddPurchase;

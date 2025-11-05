@@ -4,29 +4,11 @@ import Table from "../Components/Layout/Table";
 import useTranslate from "../Hooks/Translation/useTranslate";
 import Pagination from '../Components/Layout/Pagination';
 
-const DocumentType = () => {
+const Document41 = () => {
   const { t } = useTranslate();
   const [pageNumber, setPageNumber] = useState(1);
   const [pageSize] = useState(5);
   const [totalCount, setTotalCount] = useState(0);
-  /* 
-    const objTitle = useMemo(
-      () => ({
-        AddDocumentType: t("Add Document Type"),
-        EditDocumentType: t("Edit Document Type"),
-        Name: t("Name"),
-        Code: t("Code"),
-        Save: t("Save"),
-        Cancel: t("Cancel"),
-        Delete: t("Delete"),
-        DeleteConfirmation: t("Are you sure to delete"),
-        QuestionMark: t("?"),
-        Filter: t("Filter"),
-        Reset: t("Reset"),
-      }),
-      [t]
-    );
-   */
   const breadcrumbItems = [
     { label: t("Document 41"), link: "/Document41", active: false }
   ];
@@ -142,4 +124,4 @@ const DocumentType = () => {
   );
 };
 
-export default DocumentType;
+export default Document41;

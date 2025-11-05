@@ -67,3 +67,12 @@
     border-bottom: 1px solid #d3d3d3;
     pointer-events: none; /* so it doesn't block buttons */
 }
+
+.pull-left {
+    float: left !important;
+    display: block !important;
+}
+.pull-right {
+    float: right !important;
+    display: block !important;
+}
