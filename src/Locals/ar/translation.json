@@ -85,9 +85,9 @@
   "Document Type": "نوع المستند",
   "Tax Type": "نوع الضريبة",
   "Statement Type": "نوع البيان",
-  "Item": "العنصر",
-  "Items": "العناصر",
-  "Item Type": "نوع العنصر",
+  "Item": "المنتج",
+  "Items": "المنتجات",
+  "Item Type": "نوع المنتج",
   "Transaction Nature": "طبيعة المعاملة",
   "Customer": "العميل",
   "Supplier": "المورد",
@@ -145,5 +145,18 @@
   "Discount": "الخصم",
   "Statment Type": "نوع البيان",
   "Customer Tax Registration Number": "رقم التسجيل الضريبي للعميل",
-  "Customer Tax File Number": "رقم الملف الضريبي للعميل"
+  "Customer Tax File Number": "رقم الملف الضريبي للعميل",
+  "Invoic Date":"تاريخ الفاتورة",
+  "Add Tax Type": "إضافة نوع الضريبة",
+  "Edit Tax Type": "تعديل نوع الضريبة",
+  "Add Statement Type": "إضافة نوع البيان",
+  "Edit Statement Type": "تعديل نوع البيان",
+  "Add Item Type" : "إضافة نوع المنتج",
+  "Edit Item Type": "تعديل نوع المنتج",
+  "Deduction Percetage":"نسبة الخصم"
+
+
+
+
+
 }

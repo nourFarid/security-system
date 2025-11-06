@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import Breadcrumb from "../Components/Layout/Breadcrumb";
 import useTranslate from "../Hooks/Translation/useTranslate";
 
-const DocumentType = () => {
+const AddDocument41 = () => {
   const { t } = useTranslate();
   
   const objTitle = useMemo(
@@ -123,4 +123,4 @@ const DocumentType = () => {
   );
 };
 
-export default DocumentType;
+export default AddDocument41;

@@ -13,6 +13,10 @@ import AddPurchase from './Pages/AddPurchase'
 import AddDocument41 from './Pages/AddDocument41'
 import Sales from './Pages/Sales'
 import AddSales from './Pages/AddSales'
+import TaxType from './Pages/TaxType';
+import StatementType from './Pages/StatementType';
+import ItemType from './Pages/ItemType';
+import NatureOfTransaction from './Pages/NatureOfTransaction';
 
 function App() {
   const lang = useSelector((state) => state.language.lang)
@@ -39,6 +43,11 @@ function App() {
               <Route path="/Document41/Add" element={<AddDocument41/>} />
               <Route path="/Setup/DocumentType" element={<DocumentType/>} />
               <Route path="/ExamplePage" element={<ExamplePage/>} />
+              <Route path="/StatementType" element={<StatementType/>} />;
+              <Route path="/TaxType" element={<TaxType/>} />;
+              <Route path="/ItemType" element={<ItemType/>} />;
+              <Route path="/TransactionNature" element={<NatureOfTransaction/>} />;
+              
               {/* Add other routes */}
             </Routes>
           </Layout>

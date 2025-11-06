@@ -72,5 +72,14 @@
   "Discount": "Discount",
   "Statment Type": "Statment Type",
   "Customer Tax Registration Number": "Customer Tax Registration Number",
-  "Customer Tax File Number": "Customer Tax File Number"
+  "Customer Tax File Number": "Customer Tax File Number",
+  "Invoic Date":"Invoic Date",
+  "Add Tax Type": "Add Tax Type",
+  "Add Statement Type": "Add Statement Type",
+  "Edit Statement Type": "Edit Statement Type",
+  "Add Item Type" : "Add Itme Type",
+  "Edit Item Type": "Edit Itme Type",
+  "Deduction Percetage":"Deduction Percetage"
+
+
 }
