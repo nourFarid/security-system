@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import useTranslate from "../../Hooks/Translation/useTranslate";
 import "remixicon/fonts/remixicon.css";
@@ -28,6 +28,18 @@ const Sidebar = ({ isSidebarOpen, closeSidebar, isDesktop }) => {
 
     const isActiveLink = (path) =>  location.pathname.includes(path);
     const isParentActive = (subItems) => subItems?.some((item) => location.pathname.includes(item.path));
+
+    useEffect(() => {
+        function init() {
+        for (let i = 0; i < menuItems.length; i++) {
+            if (isParentActive(menuItems[i].subItems)) {
+            setOpenSubmenu(menuItems[i].id);
+            break; // optional if only one active submenu needed
+            }
+        }
+        }
+        init();
+    }, []);
     return (
         <>
             {isSidebarOpen && !isDesktop && (
