@@ -21,6 +21,8 @@ const User = () => {
     const [error, setError] = useState(null);
     const [errors, setErrors] = useState({});
     const [showPassword, setShowPassword] = useState(false);
+    const [objFilter, setObjFilter] = useState({ Name: "", UserName: "" });
+    const strDocDir = document.documentElement.dir;
     const objTitle = useMemo(
         () => ({
             AddUser: t("Add User"),
@@ -207,15 +209,15 @@ const User = () => {
         return Object.keys(newErrors).length === 0;
     };
 
-    const fetchUsers = async () => {
+    const fetchUsers = async (filter = objFilter) => {
         setLoading(true);
+
         try {
-            const res = await axiosInstance.get("User/ListAll");
+            const res = await axiosInstance.post("User/ListAll", filter);
             const data = res.data;
 
             if (data.result) {
                 setUsers(data.data);
-
             }
         } catch (e) {
             setError(t("Failed to fetch users"));
@@ -454,6 +456,16 @@ const User = () => {
         }
     };
 
+    const ResetFilter = () => {
+        const userFilter = {
+            Name: "",
+            UserName: ""
+        };
+
+        setObjFilter(userFilter);
+        fetchUsers(userFilter);
+    };
+
     useEffect(() => {
         fetchUsers();
         fetchRoles();
@@ -467,6 +479,77 @@ const User = () => {
     return (
         <>
             <Breadcrumb items={breadcrumbItems} button={breadcrumbButtons} />
+
+            <div className="bg-white p-3 mb-3 shadow-sm shadow-lg">
+                <h4 className="font-semibold" style={{ color: "blue" }}>
+                {t("Filter")}
+                </h4>
+
+                <div className="row">
+                <div className="col-md-3 mb-3">
+                    <label className="form-label">{t("Name")}</label>
+
+                    <input
+                    type="text"
+                    name="Name"
+                    value={objFilter.Name}
+                    placeholder={t("Name")}
+                    onChange={(e) => {
+                        setObjFilter(prev => ({
+                        ...prev,
+                        Name: e.target.value
+                        }));
+                    }}
+                    className="form-control"
+                    />
+                </div>
+
+                <div className="col-md-3 mb-3">
+                    <label className="form-label">
+                    {t("Code")}
+                    </label>
+
+                    <input
+                    type="text"
+                    name="UserName"
+                    value={objFilter.UserName}
+                    placeholder={t("Code")}
+                    onChange={(e) => {
+                        setObjFilter(prev => ({
+                        ...prev,
+                        UserName: e.target.value
+                        }));
+                    }}
+                    className="form-control"
+                    />
+                </div>
+                </div>
+
+                <div
+                className="row"
+                dir={strDocDir === "ltr" ? "rtl" : "ltr"}
+                >
+                <div className="col-md-3 mb-3">
+                    <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={() => fetchUsers()}
+                    >
+                    {t("Filter")}
+                    </button>
+
+                    &nbsp;
+
+                    <button
+                    type="button"
+                    className="btn btn-danger"
+                    onClick={ResetFilter}
+                    >
+                    {t("Reset")}
+                    </button>
+                </div>
+                </div>
+            </div>
 
             <Table
                 columns={columnsUpdated}

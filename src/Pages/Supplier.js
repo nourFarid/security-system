@@ -20,6 +20,8 @@ const Supplier = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [errors, setErrors] = useState({});
+  const [objFilter, setObjFilter] = useState({ taxRegistrationNumber: "", name: "", IsSupplier: true });
+  const strDocDir = document.documentElement.dir;
 
   const objTitle = useMemo(
     () => ({
@@ -104,7 +106,7 @@ const Supplier = () => {
     setLoading(true);
     try {
       const res = await axiosInstance.post("CustomerSupplier/List", {
-        Filter: { IsSupplier: true },
+        Filter: objFilter,
         PageNumber: page,
         PageSize: pageSize
       });
@@ -268,6 +270,11 @@ const Supplier = () => {
     setObjDocType({ NationalID: "", Name: "", AddressLine: "", TaxNumber: "", PhoneNumber: "", IsCustomer: false, IsSupplier: true });
   };
 
+  const ResetFilter = () => {
+    setObjFilter({ taxRegistrationNumber: "", name: "", IsSupplier: true });
+    fetchSuppliers(1);
+  }
+
   useEffect(() => {
     fetchSuppliers(pageNumber);
   }, [pageNumber]);
@@ -275,6 +282,77 @@ const Supplier = () => {
   return (
     <>
       <Breadcrumb items={breadcrumbItems} button={breadcrumbButtons} />
+
+      <div className="bg-white p-3 mb-3 shadow-sm shadow-lg">
+        <h4 className="font-semibold" style={{ color: "blue" }}>
+          {t("Filter")}
+        </h4>
+
+        <div className="row">
+          <div className="col-md-3 mb-3">
+            <label className="form-label">{t("Name")}</label>
+
+            <input
+              type="text"
+              name="Name"
+              value={objFilter.name}
+              placeholder={t("Name")}
+              onChange={(e) => {
+                setObjFilter(prev => ({
+                  ...prev,
+                  name: e.target.value
+                }));
+              }}
+              className="form-control"
+            />
+          </div>
+
+          <div className="col-md-3 mb-3">
+            <label className="form-label">
+              {t("Tax Registration Number")}
+            </label>
+
+            <input
+              type="text"
+              name="taxRegistrationNumber"
+              value={objFilter.taxRegistrationNumber}
+              placeholder={t("Tax Registration Number")}
+              onChange={(e) => {
+                setObjFilter(prev => ({
+                  ...prev,
+                  taxRegistrationNumber: e.target.value
+                }));
+              }}
+              className="form-control"
+            />
+          </div>
+        </div>
+
+        <div
+          className="row"
+          dir={strDocDir === "ltr" ? "rtl" : "ltr"}
+        >
+          <div className="col-md-3 mb-3">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => fetchSuppliers(1)}
+            >
+              {t("Filter")}
+            </button>
+
+            &nbsp;
+
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={ResetFilter}
+            >
+              {t("Reset")}
+            </button>
+          </div>
+        </div>
+      </div>
 
       <Table
         columns={columnsUpdated}
